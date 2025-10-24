@@ -1,0 +1,9 @@
+{
+	"name": "ashikdatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "bf9b8a55-6f9a-4c83-80d4-0117ba0e7848",
+		"tenantId": "83b32207-3173-4c32-b38b-048db31245a6"
+	}
+}
