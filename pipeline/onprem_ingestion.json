@@ -49,7 +49,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_onprem",
+						"referenceName": "onprem_para",
 						"type": "DatasetReference"
 					}
 				],

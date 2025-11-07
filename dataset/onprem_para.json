@@ -1,0 +1,30 @@
+{
+	"name": "onprem_para",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OnPremfilesystem",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": {
+					"value": "@dataset().p_filename",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
