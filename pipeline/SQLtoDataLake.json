@@ -31,17 +31,40 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT * FROM dbo.FactBookings \nWHERE booking_date > '@{activity('lastload').output.firstRow.lastload}'\nAND booking_date <= '@{activity('lastload').output.firstRow}'",
+							"value": "SELECT * FROM dbo.FactBookings \nWHERE booking_date > '@{activity('lastload').output.firstRow.lastload}'\nAND booking_date <= '@{activity('latestload').output.firstRow}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "ds_sqlsource",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_sql",
 						"type": "DatasetReference"
 					}
 				]
